@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>videos/anneMedintro.mkv</file>
+        <file>videos/anneMedintro.mp4</file>
+    </qresource>
+</RCC>
