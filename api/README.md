@@ -1,5 +1,5 @@
 # ann-Medics
-<html>
+
 <body>
 
 <svg width="100" height="100">
@@ -7,4 +7,4 @@
 </svg>
 
 </body>
-</html>
+
