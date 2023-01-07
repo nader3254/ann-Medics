@@ -25,5 +25,7 @@
         <file>uiux/MCU_uiux_blured.png</file>
         <file>uiux/connect_page.png</file>
         <file>uiux/power_on.png</file>
+        <file>videos/anneMedintro.mkv</file>
+        <file>videos/anneMedintro.mp4</file>
     </qresource>
 </RCC>

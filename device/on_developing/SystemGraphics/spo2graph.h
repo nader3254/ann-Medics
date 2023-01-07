@@ -11,26 +11,47 @@
 #include <QList>
 #include <QPoint>
 
+#include "SystemGraphics/alltexts.h"
+#include "./tools/filebrowser.h"
+#include "tools/systemerrors.h"
+#include "tools/scriptrunner.h"
 
 #define SPO2_RX1    0
 #define SPO2_RX2    527
 #define SPO2_Ry     250
-#define SPO2_RTime  40   /* 40 milli second */
-
+#define SPO2_RTime  40    /* 40 milli second */
+#define SPO2_RTime2 20000  /* 3000 milli second */
 class Spo2graph: public QQuickPaintedItem
 {
     Q_PROPERTY(int spo2  READ getspo2  WRITE setspo2  NOTIFY spo2Changed    );
     Q_OBJECT
+
+    typedef struct
+    {
+       long ir;
+       long red;
+       int  spo2;
+       int  hr;
+
+    }max30102_data_t;
 public:
+
+
     Spo2graph(QQuickItem *parent = nullptr);
     void  paint(QPainter *painter);
-
+    bool  isConnected();
+    bool  isSensorConnected();
     int   getspo2();
     void  setspo2(int sp);
+    void  setText(AllTexts* txt);
+    void  setSysERR(systemErrors *err);
+    max30102_data_t getMax30102Values();
+
 
 private slots:
     void SPO2Render();
-
+    void curve_changer();
+    void on_OMT();
 signals:
 void spo2Changed();
 
@@ -45,11 +66,30 @@ private:
 
 
  QTimer *spo2_t;
+ QTimer *spo2_t2;
+ QTimer *oneMT;
  QList <QPoint> points;
  QPoint pt;
+ AllTexts    *Txt;
+ systemErrors *_err;
+ FileBrowser *FB;      /* from here */
+ long IR,RED,prev_ir=0,no_sensor_ctr=0;
+ int ir_dc_updater;
+ int ry_prev;
+ bool curve_change=false;
 
+ long irac,irdc=160000,redac,reddc=160000;
+ long max_ir=1000;
+ int hr_ctr;
+ bool OM_passed=false;
+ max30102_data_t data;
+ scriptRunner *spo2scr;
+ float theta=4.0;
 
-
+ void readRED_IR();
+ void ConnectPoints(QPainter *painter);
+ void spo2calculator();
+ void hrcalculator();
 };
 
 #endif // SPO2GRAPH_H

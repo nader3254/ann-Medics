@@ -3,8 +3,8 @@
 
 EcgGraph::EcgGraph(QQuickItem *parent,QObject *obj): QQuickPaintedItem(parent)
 {
-    //QObject *graph = obj->findChild<QObject*>("ecg_graph");
-   // ecg_graphics_ptr= qobject_cast<EcgGraph*>(graph);
+    QObject *graph = obj->findChild<QObject*>("ecg_graph");
+    ecg_graphics_ptr= qobject_cast<EcgGraph*>(graph);
 
     ecg_t=new QTimer(this);
     connect(ecg_t, SIGNAL(timeout()), this, SLOT(EcgRender()));
@@ -21,20 +21,20 @@ void EcgGraph::paint(QPainter *painter)
 
 
     QFont font("Helvetica",18,QFont::Bold);
-       painter->setFont(font);
+    painter->setFont(font);
 
 
-       p.setColor(QColor(0, 255, 200,255));
-       painter->save();
-       p.setWidth(2);
-       painter->setPen(p);
-       for(int j=0;j<points.size();j++)
-       {
-          painter->drawPoint(points.at(j));
-       }
-       // connect all points
-       ConnectPoints(painter);
-       painter->restore();
+    p.setColor(QColor(0, 255, 200,255));
+    painter->save();
+    p.setWidth(2);
+    painter->setPen(p);
+    for(int j=0;j<points.size();j++)
+    {
+       painter->drawPoint(points.at(j));
+    }
+    // connect all points
+    ConnectPoints(painter);
+    painter->restore();
 
 
 }
@@ -57,13 +57,13 @@ void EcgGraph::EcgRender()
 {
    // _x+=14;
     pt.setX(_x++);
-    pt.setY(ECG_Ry-test[i]);
+    //pt.setY(ECG_Ry-test[i]);
+    pt.setY(ECG_Ry);
   //  pt.setY(ECG_Ry-sin(2*i++*0.0174532925 )*50);
     points<<pt;
     if(!(points.size()<ECG_RX2))
     {
         _x=0;
-       // for(int j=0;j<points.size();j++)
                points.clear();
 
     }
@@ -74,7 +74,7 @@ void EcgGraph::EcgRender()
        i=0;
    }
     update();
-    //  emit voltageChanged();
+
 }
 
 void EcgGraph::ConnectPoints(QPainter *painter)

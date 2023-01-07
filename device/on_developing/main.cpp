@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
+#include <QQuickStyle>
+#include <QQmlContext>
 
 
 #include "./SystemGraphics/ecggraph.h"
@@ -8,6 +10,9 @@
 #include "./SystemGraphics/rrgraph.h"
 #include "./SystemGraphics/batterymanager.h"
 #include "./SystemGraphics/alltexts.h"
+#include "tools/systemerrors.h"
+#include "communication/deviceinterface.h"
+#include "communication/wifi_config.h"
 
 int main(int argc, char *argv[])
 {
@@ -53,7 +58,28 @@ int main(int argc, char *argv[])
         Bat->BatteryGraphicTest();
 
         AllTexts *SystemValues =new AllTexts(obj);
-        SystemValues->AllTextTest();
+
+        //SystemValues->AllTextTest();
+
+        systemErrors *serror=new systemErrors(obj);
+        engine.rootContext()->setContextProperty("system_errors",serror);
+        spo2_graphics_ptr->setText(SystemValues);
+        spo2_graphics_ptr->setSysERR(serror);
+
+        QTimer t1; // i2=0;
+        QObject::connect(&t1,&QTimer::timeout,[&]()
+        {
+            //qDebug()<<"inside";
+            SystemValues->AllTextTest(spo2_graphics_ptr->isConnected());
+        });
+        t1.start(5);
+
+        DeviceInterface *DI=new DeviceInterface(obj);
+        DI->set_spo2Engine(spo2_graphics_ptr);
+        engine.rootContext()->setContextProperty("deviceInterface",DI);
+
+        wifi_config *wifi_t =new wifi_config();
+        engine.rootContext()->setContextProperty("wifiConfig",wifi_t);
 
     return app.exec();
 }

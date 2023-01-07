@@ -1,4 +1,5 @@
 QT += quick virtualkeyboard
+QT += quickcontrols2
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -10,7 +11,13 @@ SOURCES += \
         SystemGraphics/ecggraph.cpp \
         SystemGraphics/rrgraph.cpp \
         SystemGraphics/spo2graph.cpp \
-        main.cpp
+        communication/deviceinterface.cpp \
+        communication/wifi_config.cpp \
+        main.cpp \
+        tools/filebrowser.cpp \
+        tools/scriptrunner.cpp \
+        tools/systemerrors.cpp \
+        tools/udp.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -22,8 +29,8 @@ QML_IMPORT_PATH =
 QML_DESIGNER_IMPORT_PATH =
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
+qnx: target.path = /home/pi
+else: unix:!android: target.path = /home/pi
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
@@ -55,4 +62,10 @@ HEADERS += \
     SystemGraphics/batterymanager.h \
     SystemGraphics/ecggraph.h \
     SystemGraphics/rrgraph.h \
-    SystemGraphics/spo2graph.h
+    SystemGraphics/spo2graph.h \
+    communication/deviceinterface.h \
+    communication/wifi_config.h \
+    tools/filebrowser.h \
+    tools/scriptrunner.h \
+    tools/systemerrors.h \
+    tools/udp.h

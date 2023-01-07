@@ -11,6 +11,7 @@ AllTexts::AllTexts(QObject *parent)
   ATT=new QTimer(this);
   connect(ATT, SIGNAL(timeout()), this, SLOT(AllTextRender()));
   ATT->setInterval(1500);
+     ATT->start();
 }
 
 void AllTexts::SetHR(int val)
@@ -53,17 +54,33 @@ int AllTexts::GetNibp_max()
     return nibp_max;
 }
 
-void AllTexts::AllTextTest()
+void AllTexts::AllTextTest(bool st)
 {
-    ATT->start();
+
+    _st=st;
 }
 
 void AllTexts::AllTextRender()
 {
-   i++;
+    if(_st==true)
+    {
+        i++;
+        int hr[]={68,66,70,65,80,78,79,81,80,78};
+        int spo2[]={98,96,97,98,97,96,95,94,98,97};
+         SetHR(hr[i]);
+         //SetSpo2(spo2[i]);
+         if(i==9)
+         {
+             i=0;
+         }
+         //SetNibp(i+2,i);
+    }
+    else
+    {
+        SetHR(0);
+        SetSpo2(0);
+        SetNibp(0,0);
+    }
 
-    SetHR(i);
-    SetSpo2(i);
-    SetNibp(i+2,i);
 
 }
