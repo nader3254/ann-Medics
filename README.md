@@ -8,7 +8,7 @@ Ann-Medics is a enhanced Remote Medical Device that store the
 human vitalities and monitor it for doctors,nurses and other medical stuff ,
 it also  management system that works to organize the doctors’ hours, especially the anesthesiologists, given that their number is few in the world. Instead of waiting for the anesthesiologist for the patient to prepare for anesthesia, he can do anything else until this humble system summons him and sends a message to the doctor, and thus we will be as much as possible to save the treating doctor’s time.
  
-![review!]{review.mp4} 
+![review!]{./review.mp4} 
 ![review2!]{MCU_uiux.png} 
 
 ## General setup  
