@@ -8,8 +8,8 @@ Ann-Medics is a enhanced Remote Medical Device that store the
 human vitalities and monitor it for doctors,nurses and other medical stuff ,
 it also  management system that works to organize the doctors’ hours, especially the anesthesiologists, given that their number is few in the world. Instead of waiting for the anesthesiologist for the patient to prepare for anesthesia, he can do anything else until this humble system summons him and sends a message to the doctor, and thus we will be as much as possible to save the treating doctor’s time.
  
-![REVIEW!]{./review.mp4} 
-![review2!]{MCU_uiux.png} 
+![REVIEW!](./review.mp4)
+![review2!](MCU_uiux.png) 
 
 ## General setup  
 **Host machine:** Ubuntu 18.04.4 LTS or later   
@@ -262,5 +262,5 @@ for your device .
 3. [Qt C++ GUI Tutorial for Beginners](https://www.youtube.com/playlist?list=PLS1QulWo1RIZiBcTr5urECberTITj7gjA)  
 4. [Intel Edison audio output to Bluetooth speaker](https://tl00.wordpress.com/2015/01/28/11/)
 
-![logo!]{logo.png}
-![team!]{team.png}
+![logo!](logo.png)
+![team!](team.png)
