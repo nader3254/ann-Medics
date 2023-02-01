@@ -44,7 +44,11 @@ void Spo2graph::paint(QPainter *painter)
 }
 bool Spo2graph::isConnected()
 {
+<<<<<<< HEAD
     if(IR>130000 && IR<170000)
+=======
+    if(IR>130000 && IR<160000)
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     {
         return true;
     }
@@ -69,7 +73,11 @@ bool Spo2graph::isSensorConnected()
    else
    {
        no_sensor_ctr++;
+<<<<<<< HEAD
        if(no_sensor_ctr>=250)
+=======
+       if(no_sensor_ctr>=500)
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
        {
 
            no_sensor_ctr=0;
@@ -114,12 +122,15 @@ void Spo2graph::set_red_ir(long ir, long red)
 
 }
 
+<<<<<<< HEAD
 void Spo2graph::setCoords(int x, int y)
 {
     SPO2_RX2=x;
     SPO2_Ry=y;
 }
 
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 void Spo2graph::SPO2Render()
 {
 
@@ -128,8 +139,19 @@ void Spo2graph::SPO2Render()
 
     if(isConnected())
     {
+<<<<<<< HEAD
 
       ry=SPO2_Ry-((SPO2_Ry/3*0.6)*cos(ir_dc_updater*theta*0.0174532925)*tanh(ir_dc_updater*theta*0.0174532925*sin(ir_dc_updater*theta*0.0174532925)));
+=======
+        if(curve_change)
+        {
+            ry=SPO2_Ry-(35*cos(ir_dc_updater*2*0.0174532925)*tanh(ir_dc_updater*2*0.0174532925*sin(ir_dc_updater*2*0.0174532925)));
+        }
+        else
+        {
+           ry=SPO2_Ry-(41*cos(ir_dc_updater*1*0.0174532925*(1/cos(ir_dc_updater*1*0.0174532925)))*tanh(ir_dc_updater*1*0.0174532925*6));
+        }
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     }
     else
     {
@@ -137,7 +159,11 @@ void Spo2graph::SPO2Render()
     }
 
 
+<<<<<<< HEAD
    if(ir_dc_updater<360)
+=======
+   if(ir_dc_updater<50000)
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
    {
        ir_dc_updater++;
    }
@@ -193,6 +219,7 @@ void Spo2graph::on_OMT()
 void Spo2graph::readRED_IR()
 {
   // will get red and ir using udp
+<<<<<<< HEAD
 //    if(IR>120000&&IR<135000)
 //    {
 //        curve_change=false;
@@ -204,6 +231,16 @@ void Spo2graph::readRED_IR()
     float normalization=(IR-130000)*0.000054;
     norm=normalization;
     theta=2.6*normalization;
+=======
+    if(IR>120000&&IR<135000)
+    {
+        curve_change=false;
+    }
+    if(IR>135000)
+    {
+        curve_change=true;
+    }
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     spo2calculator();
     hrcalculator();
 

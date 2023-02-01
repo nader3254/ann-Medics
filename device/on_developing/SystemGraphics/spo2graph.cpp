@@ -12,6 +12,7 @@ Spo2graph::Spo2graph(QQuickItem *parent): QQuickPaintedItem(parent)
     spo2_t2->setInterval(SPO2_RTime2);
     spo2_t2->start();
 
+<<<<<<< HEAD
 //    oneMT=new QTimer(this);
 //    connect(oneMT, SIGNAL(timeout()), this, SLOT(on_OMT()));
 //    oneMT->setInterval(15000);/* one miniute */
@@ -20,6 +21,14 @@ Spo2graph::Spo2graph(QQuickItem *parent): QQuickPaintedItem(parent)
     spo2scr=new scriptRunner("cd /home/pi/tst/MAX30102 && sudo python3 Red_IR.py");
     //spo2scr=new scriptRunner("ls");
 
+=======
+    oneMT=new QTimer(this);
+    connect(oneMT, SIGNAL(timeout()), this, SLOT(on_OMT()));
+    oneMT->setInterval(15000);/* one miniute */
+    oneMT->start();
+
+    spo2scr=new scriptRunner("cd /home/pi/tst/MAX30102 && sudo python3 Red_IR.py");
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     spo2scr->start();
    // "cd /home/pi/tst/MAX30102 && sudo python3 Red_IR.py" /* this command to run the script */
 
@@ -49,7 +58,11 @@ void Spo2graph::paint(QPainter *painter)
 }
 bool Spo2graph::isConnected()
 {
+<<<<<<< HEAD
     if(IR>130000 && IR<170000)
+=======
+    if(IR>130000 && IR<160000)
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     {
         return true;
     }
@@ -133,7 +146,11 @@ void Spo2graph::SPO2Render()
     }
 
 
+<<<<<<< HEAD
    if(ir_dc_updater<360)
+=======
+   if(ir_dc_updater<50000)
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
    {
        ir_dc_updater++;
    }
@@ -214,10 +231,15 @@ void Spo2graph::readRED_IR()
 //        }
     }
 
+<<<<<<< HEAD
     float normalization=(IR-130000)*0.000054;
     norm=normalization;
     theta=2.6*normalization;
 //    theta=2.6*0.95;
+=======
+    float normalization=(IR-120000)*0.000034;
+    theta=2.5*normalization;
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     data.ir=IR;
     data.red=RED;
     spo2calculator();

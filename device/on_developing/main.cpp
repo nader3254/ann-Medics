@@ -59,25 +59,39 @@ int main(int argc, char *argv[])
 
         AllTexts *SystemValues =new AllTexts(obj);
 
+<<<<<<< HEAD
+=======
+        //SystemValues->AllTextTest();
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 
         systemErrors *serror=new systemErrors(obj);
         engine.rootContext()->setContextProperty("system_errors",serror);
         spo2_graphics_ptr->setText(SystemValues);
         spo2_graphics_ptr->setSysERR(serror);
 
+<<<<<<< HEAD
         QTimer t1;
+=======
+        QTimer t1; // i2=0;
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         QObject::connect(&t1,&QTimer::timeout,[&]()
         {
             //qDebug()<<"inside";
             SystemValues->AllTextTest(spo2_graphics_ptr->isConnected());
+<<<<<<< HEAD
             ecg_graphics_ptr->isConnection(spo2_graphics_ptr->isConnected());
             rr_graphics_ptr->isConnection(spo2_graphics_ptr->isConnected());
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         });
         t1.start(5);
 
         DeviceInterface *DI=new DeviceInterface(obj);
         DI->set_spo2Engine(spo2_graphics_ptr);
+<<<<<<< HEAD
         DI->set_ecgEngine(ecg_graphics_ptr);
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         engine.rootContext()->setContextProperty("deviceInterface",DI);
 
         wifi_config *wifi_t =new wifi_config();

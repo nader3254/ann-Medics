@@ -16,7 +16,13 @@
 #include "tools/systemerrors.h"
 
 #define SPO2_RX1    0
+<<<<<<< HEAD
 #define SPO2_RTime  10    /* 40 milli second */
+=======
+#define SPO2_RX2    527
+#define SPO2_Ry     250
+#define SPO2_RTime  40    /* 40 milli second */
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 #define SPO2_RTime2 20000  /* 3000 milli second */
 class Spo2graph: public QQuickPaintedItem
 {
@@ -33,8 +39,12 @@ public:
     void  setSysERR(systemErrors *err);
     void  set_red_ir(long ir,long red);
 
+<<<<<<< HEAD
 public slots:
     void setCoords(int x,int y);
+=======
+
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 private slots:
     void SPO2Render();
     void curve_changer();
@@ -70,9 +80,12 @@ private:
  int hr_ctr;
  bool OM_passed=false;
 
+<<<<<<< HEAD
 int SPO2_RX2;
 int SPO2_Ry ;
  float norm,theta=4.0;
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
  void readRED_IR();
  void ConnectPoints(QPainter *painter);
  void spo2calculator();

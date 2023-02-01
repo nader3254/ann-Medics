@@ -57,16 +57,24 @@ void DeviceInterface::thread()
             address+=".";
         }
         address+=QString::number(devorder);devorder++;
+<<<<<<< HEAD
       //  qDebug()<<"device predicted address is:: "<<address;
+=======
+        qDebug()<<"device predicted address is:: "<<address;
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         if(devorder>255)
         {
            devorder=2;
         }
         if(!address.contains(myaddrs))
+<<<<<<< HEAD
         {
               server->send(address,WHO_ONLINE);
               QThread::msleep(3);
         }
+=======
+              server->send(address,WHO_ONLINE);
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     }
     if(validcmd==true)
     {
@@ -126,11 +134,14 @@ void DeviceInterface::set_spo2Engine(Spo2graph *engine)
 
 }
 
+<<<<<<< HEAD
 void DeviceInterface::set_ecgEngine(EcgGraph *engine)
 {
     ecg_grf=engine;
 }
 
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 void DeviceInterface::parse_cmd()
 {
    QStringList lst=rawcmd.split(" ");
@@ -169,7 +180,10 @@ void DeviceInterface::excute_cmd()
         if(deviceAddress==toConnAddress)
         {
             spo2_grf->set_red_ir(device_data.at(0).toLong(),device_data.at(1).toLong());
+<<<<<<< HEAD
             ecg_grf->setEcgAdv(device_data.at(2).toInt());
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         }
 
     }

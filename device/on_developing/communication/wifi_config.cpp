@@ -21,7 +21,10 @@ void wifi_config::connect_wifiNetwork(QString ssid, QString psk)
    qDebug()<<"the new configuration";
    system("sudo cp wpa_supplicant.conf /etc/wpa_supplicant/");
    system("wpa_cli -i wlan0 reconfigure");
+<<<<<<< HEAD
    system("sudo reboot ");
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
    //system("sudo ip link set wlan0 up");
 
 

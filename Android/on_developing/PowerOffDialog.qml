@@ -31,7 +31,14 @@ Rectangle {
     color: "#04041a"
     Image {
         id: image3
+<<<<<<< HEAD
         anchors.fill: parent
+=======
+        x: -20
+        y: 0
+        width: 828
+        height: 506
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         source: "qrc:/uiux/uiux/power_on.png"
         fillMode: Image.Stretch
 

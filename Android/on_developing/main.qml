@@ -34,8 +34,11 @@ Window {
 //        focus: true
 //        onStopped: page1.visible = true
 //    }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     Onlinedevices
     {
       id:ol
@@ -47,7 +50,10 @@ Window {
         objectName: "monitor_ui"
         visible: false
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     }
     ConnectionDialog
     {

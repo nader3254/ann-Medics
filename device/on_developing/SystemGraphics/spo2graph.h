@@ -19,9 +19,14 @@
 #define SPO2_RX1    0
 #define SPO2_RX2    527
 #define SPO2_Ry     250
+<<<<<<< HEAD
 #define SPO2_RTime  10    /* 40 milli second */
 #define SPO2_RTime2 20000  /* 3000 milli second */
 
+=======
+#define SPO2_RTime  40    /* 40 milli second */
+#define SPO2_RTime2 20000  /* 3000 milli second */
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 class Spo2graph: public QQuickPaintedItem
 {
     Q_PROPERTY(int spo2  READ getspo2  WRITE setspo2  NOTIFY spo2Changed    );
@@ -85,7 +90,11 @@ private:
  bool OM_passed=false;
  max30102_data_t data;
  scriptRunner *spo2scr;
+<<<<<<< HEAD
  float norm,theta=4.0;
+=======
+ float theta=4.0;
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 
  void readRED_IR();
  void ConnectPoints(QPainter *painter);

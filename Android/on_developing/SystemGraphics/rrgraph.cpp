@@ -46,6 +46,7 @@ void rrgraph::setrr(int rt)
     emit rrChanged();
 }
 
+<<<<<<< HEAD
 void rrgraph::isConnection(bool st)
 {
      connection=st;
@@ -64,6 +65,12 @@ void rrgraph::RRRender()
     if(connection==true){pt.setY(RR_Ry-((RR_Ry*0.08)*sin(2*i*0.0174532925)));i++;}
     else {pt.setY(RR_Ry);}
     if(i==180){i=0;}
+=======
+void rrgraph::RRRender()
+{
+
+    pt.setX(_x++);pt.setY(RR_Ry);
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     points<<pt;
     if(!(points.size()<RR_RX2))
     {
@@ -71,6 +78,11 @@ void rrgraph::RRRender()
         points.clear();
 
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     update();
 
 }

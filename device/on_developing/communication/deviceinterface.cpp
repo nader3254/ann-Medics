@@ -42,11 +42,14 @@ void DeviceInterface::set_spo2Engine(Spo2graph *engine)
     spo2_grf=engine;
 }
 
+<<<<<<< HEAD
 void DeviceInterface::set_ecgEngine(EcgGraph *engine)
 {
     ecg_grf=engine;
 }
 
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 QString DeviceInterface::get_online()
 {
 
@@ -80,9 +83,14 @@ void DeviceInterface::thread()
         QString ir=QString::number(spo2_grf->getMax30102Values().ir);
         QString red=QString::number(spo2_grf->getMax30102Values().red);
         QString spo2=QString::number(spo2_grf->getMax30102Values().spo2);
+<<<<<<< HEAD
         QString ecgAdc=QString::number(ecg_grf->getEcgAdc());
 
         QString cmd=MONITOR+" "+ir+" "+red+" "+ecgAdc;
+=======
+
+        QString cmd=MONITOR+" "+ir+" "+red+" "+spo2;
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         qDebug()<<"<Monitor cmd is:"<<cmd;
         custom_send(SenderAddress,cmd);
 

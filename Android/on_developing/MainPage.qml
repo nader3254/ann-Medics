@@ -16,6 +16,7 @@ Rectangle {
     height: parent.height
     color: "black"
 
+<<<<<<< HEAD
         Timer {
             interval: 2; running: true; repeat: false
             onTriggered:
@@ -29,6 +30,8 @@ Rectangle {
 
 
 
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
         Image {
             id: background
             x: 0
@@ -142,7 +145,11 @@ Rectangle {
                     }
                     onPressed:{ connect_pressed.visible=true;
                                 //connectPage.visible=true;
+<<<<<<< HEAD
                                // page2.open();
+=======
+                                page2.open();
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 
                               }
                     onReleased: connect_pressed.visible=false;
@@ -466,6 +473,7 @@ Rectangle {
 
 
     ECGGraph{
+<<<<<<< HEAD
         id:ec
         width : 800
         height: 480
@@ -478,13 +486,24 @@ Rectangle {
     }
     SPO2Graph{
         id:sp
+=======
+        width : 800
+        height: 480
+        objectName: "ecg_graph"
+        voltage_mv: voltage_mv
+    }
+    SPO2Graph{
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
        width: 800
        height: 480
        objectName: "spo2_graph"
        spo2: spo2
     }
     RRGraph{
+<<<<<<< HEAD
         id:rrrrr
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
        width: 800
        height: 480
        objectName: "rr_graph"

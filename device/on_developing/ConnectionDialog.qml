@@ -42,7 +42,11 @@ Dialog {
 
             TextField {
                 id: nssid
+<<<<<<< HEAD
                 text: ""
+=======
+                text: "a_medics"
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
                 x: 97
                 y: 132
                 width: 185
@@ -52,7 +56,11 @@ Dialog {
 
             TextField {
                 id: npassword
+<<<<<<< HEAD
                 text: ""
+=======
+                text: "aabbccdd"
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
                 x: 97
                 y: 173
                 width: 185

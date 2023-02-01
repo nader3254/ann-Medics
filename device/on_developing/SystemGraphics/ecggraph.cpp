@@ -5,6 +5,7 @@ EcgGraph::EcgGraph(QQuickItem *parent,QObject *obj): QQuickPaintedItem(parent)
 {
     QObject *graph = obj->findChild<QObject*>("ecg_graph");
     ecg_graphics_ptr= qobject_cast<EcgGraph*>(graph);
+<<<<<<< HEAD
 
     ecf=new FileBrowser("");
     qDebug()<<"starting the ecg script ....";
@@ -12,6 +13,8 @@ EcgGraph::EcgGraph(QQuickItem *parent,QObject *obj): QQuickPaintedItem(parent)
     buzzscr=new scriptRunner("cd /home/pi/tst/Buzzer/ && sudo python3 buzzer.py ");
     ecgscr->start();
     buzzscr->start();
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 
     ecg_t=new QTimer(this);
     connect(ecg_t, SIGNAL(timeout()), this, SLOT(EcgRender()));
@@ -78,21 +81,32 @@ void EcgGraph::EcgRender()
 {
     getECG();
     pt.setX(_x++);
+<<<<<<< HEAD
     if(buzz==true && (normalization>=0.2))
     {
         normalization=0.80;
         buzz=false;
     }
     pt.setY(ECG_Ry-((ECG_Ry-60)*normalization));
+=======
+    //pt.setY(ECG_Ry-test[i]);
+    pt.setY(ECG_Ry);
+  //  pt.setY(ECG_Ry-sin(2*i++*0.0174532925 )*50);
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     points<<pt;
     if(!(points.size()<ECG_RX2))
     {
         _x=0;
+<<<<<<< HEAD
         points.clear();
+=======
+               points.clear();
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 
     }
    update();
 
+<<<<<<< HEAD
 }
 
 void EcgGraph::bpmTask()
@@ -109,6 +123,15 @@ void EcgGraph::makeBuzz()
     buzz=true;
     FileBrowser *ffb=new FileBrowser("");
     ffb->WriteFile("/home/pi/tst/Buzzer/buzzer.txt","on");
+=======
+   i++;
+   if(i==10)
+   {
+       i=0;
+   }
+    update();
+
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 }
 
 void EcgGraph::ConnectPoints(QPainter *painter)

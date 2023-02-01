@@ -5,7 +5,10 @@
 #include <QObject>
 #include <QNetworkInterface>
 #include "SystemGraphics/spo2graph.h"
+<<<<<<< HEAD
 #include "SystemGraphics/ecggraph.h"
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 #include "tools/udp.h"
 #include <QVariant>
 
@@ -24,7 +27,10 @@ class DeviceInterface : public QObject
 public:
     explicit DeviceInterface(QObject *parent = nullptr);
     void set_spo2Engine(Spo2graph *engine);
+<<<<<<< HEAD
     void set_ecgEngine(EcgGraph *engine);
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
 
 public slots :
     QString  get_online();
@@ -54,7 +60,10 @@ private:
     bool         FromServer;
     bool         StartStream=false;
     Spo2graph    *spo2_grf;
+<<<<<<< HEAD
     EcgGraph     *ecg_grf;
+=======
+>>>>>>> aa1f01b9d0f3590d9575e9dc1a536fe2aee0f813
     int          waitToConnect=0;
     QObject* SA ;
 
