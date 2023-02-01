@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
+#include <QQuickStyle>
+#include <QQmlContext>
 
 
 #include "./SystemGraphics/ecggraph.h"
@@ -8,6 +10,9 @@
 #include "./SystemGraphics/rrgraph.h"
 #include "./SystemGraphics/batterymanager.h"
 #include "./SystemGraphics/alltexts.h"
+#include "tools/systemerrors.h"
+#include "communication/deviceinterface.h"
+#include "communication/wifi_config.h"
 
 int main(int argc, char *argv[])
 {
@@ -46,14 +51,37 @@ int main(int argc, char *argv[])
    /***************************************************************/
         QObject *obj3 = engine.rootObjects()[0];                       //take care
         QObject *graph3 = obj3->findChild<QObject*>("rr_graph");
-        Spo2graph *rr_graphics_ptr= qobject_cast<Spo2graph*>(graph3);
+        rrgraph *rr_graphics_ptr= qobject_cast<rrgraph*>(graph3);
    /***************************************************************/
         BatteryManager *Bat = new BatteryManager(obj);
        //Bat->SetBatteryLevel(BatteryManager::level3); //for debugging
         Bat->BatteryGraphicTest();
 
         AllTexts *SystemValues =new AllTexts(obj);
-        SystemValues->AllTextTest();
+
+
+        systemErrors *serror=new systemErrors(obj);
+        engine.rootContext()->setContextProperty("system_errors",serror);
+        spo2_graphics_ptr->setText(SystemValues);
+        spo2_graphics_ptr->setSysERR(serror);
+
+        QTimer t1;
+        QObject::connect(&t1,&QTimer::timeout,[&]()
+        {
+            //qDebug()<<"inside";
+            SystemValues->AllTextTest(spo2_graphics_ptr->isConnected());
+            ecg_graphics_ptr->isConnection(spo2_graphics_ptr->isConnected());
+            rr_graphics_ptr->isConnection(spo2_graphics_ptr->isConnected());
+        });
+        t1.start(5);
+
+        DeviceInterface *DI=new DeviceInterface(obj);
+        DI->set_spo2Engine(spo2_graphics_ptr);
+        DI->set_ecgEngine(ecg_graphics_ptr);
+        engine.rootContext()->setContextProperty("deviceInterface",DI);
+
+        wifi_config *wifi_t =new wifi_config();
+        engine.rootContext()->setContextProperty("wifiConfig",wifi_t);
 
     return app.exec();
 }

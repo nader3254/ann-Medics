@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>MainPage.qml</file>
+        <file>ConnectionDialog.qml</file>
+        <file>ErrorDialog.qml</file>
+        <file>PowerOffDialog.qml</file>
     </qresource>
 </RCC>

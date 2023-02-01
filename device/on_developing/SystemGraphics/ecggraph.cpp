@@ -3,14 +3,25 @@
 
 EcgGraph::EcgGraph(QQuickItem *parent,QObject *obj): QQuickPaintedItem(parent)
 {
-    //QObject *graph = obj->findChild<QObject*>("ecg_graph");
-   // ecg_graphics_ptr= qobject_cast<EcgGraph*>(graph);
+    QObject *graph = obj->findChild<QObject*>("ecg_graph");
+    ecg_graphics_ptr= qobject_cast<EcgGraph*>(graph);
+
+    ecf=new FileBrowser("");
+    qDebug()<<"starting the ecg script ....";
+    ecgscr=new scriptRunner("cd /home/pi/tst/ecgMcp3008/ && sudo python3 simpletest.py ");
+    buzzscr=new scriptRunner("cd /home/pi/tst/Buzzer/ && sudo python3 buzzer.py ");
+    ecgscr->start();
+    buzzscr->start();
 
     ecg_t=new QTimer(this);
     connect(ecg_t, SIGNAL(timeout()), this, SLOT(EcgRender()));
     ecg_t->setInterval(ECG_RTime);
     ecg_t->start();
 
+    buzzTimer=new QTimer(this);
+    connect(buzzTimer, SIGNAL(timeout()), this, SLOT(bpmTask()));
+    buzzTimer->setInterval(910);
+    buzzTimer->start();
 
 }
 
@@ -21,20 +32,20 @@ void EcgGraph::paint(QPainter *painter)
 
 
     QFont font("Helvetica",18,QFont::Bold);
-       painter->setFont(font);
+    painter->setFont(font);
 
 
-       p.setColor(QColor(0, 255, 200,255));
-       painter->save();
-       p.setWidth(2);
-       painter->setPen(p);
-       for(int j=0;j<points.size();j++)
-       {
-          painter->drawPoint(points.at(j));
-       }
-       // connect all points
-       ConnectPoints(painter);
-       painter->restore();
+    p.setColor(QColor(0, 255, 200,255));
+    painter->save();
+    p.setWidth(2);
+    painter->setPen(p);
+    for(int j=0;j<points.size();j++)
+    {
+       painter->drawPoint(points.at(j));
+    }
+    // connect all points
+    ConnectPoints(painter);
+    painter->restore();
 
 
 }
@@ -53,28 +64,51 @@ void EcgGraph::setVolyage(float mv)
             emit voltageChanged();
 }
 
+void EcgGraph::isConnection(bool st)
+{
+    connection=st;
+}
+
+int EcgGraph::getEcgAdc()
+{
+  return  adcValue;
+}
+
 void EcgGraph::EcgRender()
 {
-   // _x+=14;
+    getECG();
     pt.setX(_x++);
-    pt.setY(ECG_Ry-test[i]);
-  //  pt.setY(ECG_Ry-sin(2*i++*0.0174532925 )*50);
+    if(buzz==true && (normalization>=0.2))
+    {
+        normalization=0.80;
+        buzz=false;
+    }
+    pt.setY(ECG_Ry-((ECG_Ry-60)*normalization));
     points<<pt;
     if(!(points.size()<ECG_RX2))
     {
         _x=0;
-       // for(int j=0;j<points.size();j++)
-               points.clear();
+        points.clear();
 
     }
+   update();
 
-   i++;
-   if(i==10)
-   {
-       i=0;
-   }
-    update();
-    //  emit voltageChanged();
+}
+
+void EcgGraph::bpmTask()
+{
+
+    if(connection==true)
+    {
+        makeBuzz();
+    }
+}
+
+void EcgGraph::makeBuzz()
+{
+    buzz=true;
+    FileBrowser *ffb=new FileBrowser("");
+    ffb->WriteFile("/home/pi/tst/Buzzer/buzzer.txt","on");
 }
 
 void EcgGraph::ConnectPoints(QPainter *painter)
@@ -114,3 +148,79 @@ void EcgGraph::ConnectPoints(QPainter *painter)
     }
 
 }
+
+void EcgGraph::getECG()
+{
+
+    QString tmp =ecf->ReadFile("/home/pi/tst/ecgMcp3008/ecg.txt");
+    adcValue=tmp.toInt();
+    normalization=(adcValue)*0.00027751;
+
+}
+
+    //normalization=(adcValue)*0.00097751;
+//    if((adcValue>0)&&(adcValue<1020) )
+//    {
+//       normalization=(adcValue)*0.00027751;
+//    }
+//    else
+//    {
+//        normalization=(adcValue)*0.00097751;
+
+//    }
+
+
+    //qDebug()<<"ecg is :: "<<normalization;
+
+
+
+//    switch (curr_state) {
+//    case p:
+//        pt.setY(ECG_Ry-i);i++;
+//        if(i==50)
+//        {
+//            curr_state=q;i=0;
+//        }
+//        break;
+//    case q:
+//        pt.setY(ECG_Ry);i++;
+//        if(i==32)
+//        {
+//            pt.setY(ECG_Ry+50);
+//            curr_state=r;i=0;
+//        }
+//        break;
+//    case r:
+//        pt.setY(ECG_Ry-(ECG_Ry-60));
+//        curr_state=t;
+//        break;
+//    case t:
+//        pt.setY(ECG_Ry-((20)*sin(i*0.0174532925)));i++;
+//        if(i==91)
+//        {
+//            i=0;
+//            curr_state=p;
+//        }
+
+
+//        break;
+
+//    default:
+//        break;
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

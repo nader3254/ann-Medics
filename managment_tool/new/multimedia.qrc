@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>videos/anneMedintro.mkv</file>
+        <file>images/login_backGround.png</file>
+    </qresource>
+</RCC>

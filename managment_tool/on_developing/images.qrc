@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/uiux">
+        <file>uiux/allbuttons.png</file>
+        <file>uiux/background.png</file>
+        <file>uiux/battery_charging.png</file>
+        <file>uiux/battery_empty.png</file>
+        <file>uiux/battery_full.png</file>
+        <file>uiux/battery_lvl1.png</file>
+        <file>uiux/battery_lvl2.png</file>
+        <file>uiux/battery_lvl3.png</file>
+        <file>uiux/connect.png</file>
+        <file>uiux/connect_pressed.png</file>
+        <file>uiux/connect_pressed.psd</file>
+        <file>uiux/eerror.png</file>
+        <file>uiux/error_red.png</file>
+        <file>uiux/error_yellow.png</file>
+        <file>uiux/MCU_uiux.png</file>
+        <file>uiux/MCU_uiux.psd</file>
+        <file>uiux/mute_pressed.png</file>
+        <file>uiux/mute_released.png</file>
+        <file>uiux/power.png</file>
+        <file>uiux/power_pressed.png</file>
+        <file>uiux/system_test_pressed.png</file>
+        <file>uiux/system_test_re.png</file>
+        <file>uiux/MCU_uiux_blured.png</file>
+        <file>uiux/connect_page.png</file>
+        <file>uiux/power_on.png</file>
+        <file>videos/anneMedintro.mkv</file>
+        <file>uiux/background2.png</file>
+    </qresource>
+</RCC>

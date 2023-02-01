@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/loginPage.qml</file>
+        <file>qml/dashBoardPage.qml</file>
+        <file>qml/DB_onlineDevices.qml</file>
+    </qresource>
+</RCC>
